@@ -1,6 +1,6 @@
 {
   "name": "eslint-config",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -11,7 +11,8 @@
     "./test": "./src/test.js",
     "./base": "./src/base.js",
     "./next": "./src/next.js",
-    "./react": "./src/react.js"
+    "./react": "./src/react.js",
+    "./custom-rules": "./src/eslint-rules/index.js"
   },
   "keywords": [],
   "author": "",
