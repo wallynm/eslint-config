@@ -73,4 +73,31 @@ rules: {
     importPath: "tailwind-merge" 
   }]
 }
-``` 
+```
+
+## Importing in Your Project
+
+When importing the rule in your project, use the direct import from the package:
+
+```js
+// eslint.config.js in your project
+import { noTemplateClassname } from "eslint-config" // Import directly from the package
+
+export default [
+  // ... other configs
+  {
+    rules: {
+      "custom/no-template-classname": ["error", { 
+        importName: "cn", 
+        importPath: "@/lib/utils" 
+      }],
+    },
+    plugins: {
+      custom: {
+        rules: {
+          "no-template-classname": noTemplateClassname,
+        },
+      },
+    },
+  },
+] 

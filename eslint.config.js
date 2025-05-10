@@ -1,5 +1,4 @@
 import _nextJsConfig from "./src/next.js"
-import { config as reactConfig } from "./src/react.js"
 import tseslint from "typescript-eslint"
 import {
   noTemplateClassname,
@@ -8,18 +7,7 @@ import {
   typeOperatorStyle,
   useClientFirstLine
 } from "./src/eslint-rules/index.js"
-import { fileURLToPath } from "url"
-import path from "path"
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
-/** @type {import('typescript-eslint').Config[]} */
-const nextJsConfig = /** @type {any} */ (_nextJsConfig)
-
-const parserOptions = {
-  project: true,
-  tsconfigRootDir: __dirname,
-}
 
 export default tseslint.config(
   {
@@ -40,15 +28,16 @@ export default tseslint.config(
       "packages/eslint-config/",
     ],
   },
-  
   {
     files: ["eslint.config.js", "src/**/*.js"],
     languageOptions: {
       parser: tseslint.parser,
-      parserOptions,
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
-
   {
     plugins: {
       custom: {
@@ -62,7 +51,6 @@ export default tseslint.config(
       }
     }
   },
-
   {
     rules: {
       "custom/no-template-classname": ["error", { 
@@ -74,9 +62,5 @@ export default tseslint.config(
       "custom/type-operator-style": "error",
       "custom/use-client-first-line": "error",
     }
-  },
-
-  ...reactConfig,
-  
-  ...(Array.isArray(nextJsConfig) ? nextJsConfig : [nextJsConfig])
+  }
 )

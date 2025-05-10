@@ -20,15 +20,6 @@ export const commonPlugins = {
   "@stylistic/js": stylisticJs,
   perfectionist,
   "newline-destructuring": eslintPluginDesctructuring,
-  "custom-rules": {
-    rules: {
-      "no-comments-allowed": noCommentsAllowed,
-      "no-template-classname": noTemplateInClassName,
-      "type-operator-style": typeOperatorStyle,
-      "no-export-default-function": noExportDefaultFunction,
-      "use-client-first-line": useClientFirstLine,
-    },
-  },
   "react-hooks": pluginReactHooks,
   "react": pluginReact,
 }
@@ -86,11 +77,6 @@ export const commonRules = {
       environment: "node",
     },
   ],
-  "custom-rules/no-comments-allowed": "error",
-  "custom-rules/no-template-classname": "error",
-  "custom-rules/type-operator-style": "error",
-  "custom-rules/no-export-default-function": "error",
-  "custom-rules/use-client-first-line": "error",
 
   "func-style": ["error", "expression", { "allowArrowFunctions": true }],
   "no-console": "off",
