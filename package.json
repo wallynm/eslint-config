@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
-    "./base": "./base.js",
-    "./next": "./next.js",
-    "./react": "./react.js"
+    "./base": "./src/base.js",
+    "./next": "./src/next.js",
+    "./react": "./src/react.js"
   },
   "keywords": [],
   "author": "",
