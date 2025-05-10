@@ -28,7 +28,7 @@ importers:
         specifier: ^9.21.0
         version: 9.26.0
       eslint-config-prettier:
-        specifier: ^10
+        specifier: ^10.1.5
         version: 10.1.5(eslint@9.26.0)
       eslint-plugin-newline-destructuring:
         specifier: ^1
