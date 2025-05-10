@@ -42,7 +42,6 @@ const nextJsConfig = defineConfig([
       "react/react-in-jsx-scope": "off",
       "@typescript-eslint/await-thenable": "off",
       "@typescript-eslint/no-floating-promises": "off",
-      "react/react-in-jsx-scope": "off",
       "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unnecessary-condition": "off",

@@ -1,8 +1,6 @@
 import baseConfig from "./base.js"
 import js from "@eslint/js"
 import eslintConfigPrettier from "eslint-config-prettier"
-import pluginReact from "eslint-plugin-react"
-import pluginReactHooks from "eslint-plugin-react-hooks"
 import globals from "globals"
 import tseslint from "typescript-eslint"
 
