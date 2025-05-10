@@ -3,15 +3,33 @@ export default {
     type: "suggestion",
     fixable: "code",
     docs: {
-      description: "Enforce usage of `cn()` over template strings in className",
+      description: "Enforce usage of utility function over template strings in className",
     },
     messages: {
-      useCn: "Prefira utilizar o utilitário `cn()` em vez de template strings em className",
+      useCn: "Prefer the usage of utility function over template strings in className",
     },
-    schema: [],
+    schema: [
+      {
+        type: "object",
+        properties: {
+          importName: {
+            type: "string",
+            default: "clsx",
+          },
+          importPath: {
+            type: "string",
+            default: "clsx",
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
     const sourceCode = context.getSourceCode()
+    const options = context.options[0] || {}
+    const importName = options.importName || "clsx"
+    const importPath = options.importPath || "clsx"
 
     return {
       JSXAttribute(node) {
@@ -45,23 +63,23 @@ export default {
           messageId: "useCn",
           fix(fixer) {
             const allArgs = [...staticStrings, ...dynamicExprs].join(", ")
-            const replacement = `cn(${allArgs})`
+            const replacement = `${importName}(${allArgs})`
             const fixes = [fixer.replaceText(node.value, `{${replacement}}`)]
 
-            const hasCnImport = sourceCode.ast.body.some(
+            const hasImport = sourceCode.ast.body.some(
               (n) =>
                 n.type === "ImportDeclaration" &&
-                n.source.value === "@tessel/utils" &&
+                n.source.value === importPath &&
                 n.specifiers.some(
-                  (s) => s.type === "ImportSpecifier" && s.imported.name === "cn"
+                  (s) => s.type === "ImportSpecifier" && s.imported.name === importName
                 )
             )
 
-            if (!hasCnImport) {
+            if (!hasImport) {
               fixes.push(
                 fixer.insertTextBeforeRange(
                   [0, 0],
-                  "import { cn } from \"@tessel/utils\"\n"
+                  `import { ${importName} } from "${importPath}"\n`
                 )
               )
             }
