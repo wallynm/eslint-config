@@ -1,18 +1,20 @@
-import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
-import tseslint from "typescript-eslint";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginReact from "eslint-plugin-react";
-import globals from "globals";
-import pluginNext from "@next/eslint-plugin-next";
-import baseConfig from "./base.js";
+import baseConfig from "./base.js"
+import js from "@eslint/js"
+import pluginNext from "@next/eslint-plugin-next"
+import eslintConfigPrettier from "eslint-config-prettier"
+import { defineConfig } from "eslint/config"
+import tseslint from "typescript-eslint"
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
-export const nextJsConfig = [
-  { 
+const nextJsConfig = defineConfig([
+  js.configs.recommended,
+  eslintConfigPrettier,
+  ...tseslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  ...baseConfig,
+  {
     ignores: [
       "dist/**", 
-      "node_modules/**", 
+      "node_modules/**",  
       ".next/**", 
       ".turbo/**", 
       "coverage/**",
@@ -24,16 +26,8 @@ export const nextJsConfig = [
       "postcss.config.mjs",
       "tailwind.config.js",
       "tailwind.config.ts", 
-    ]
-  },
-  js.configs.recommended,
-  eslintConfigPrettier,
-  ...tseslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  ...baseConfig,
-
-  {
-    files: ["**/*.{ts,tsx}"],
+    ],
+    files: ["**/*.{js,jsx,mjs,cjs}"],
     languageOptions: {
       parserOptions: {
         project: true,
@@ -46,25 +40,16 @@ export const nextJsConfig = [
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
       "react/react-in-jsx-scope": "off",
-    },
-    settings: { react: { version: "detect" } },
-  },
-
-  {
-    files: ["**/*.{js,jsx,mjs,cjs}"],
-    plugins: {
-       "@next/next": pluginNext,
-    },
-    rules: {
       "@typescript-eslint/await-thenable": "off",
       "@typescript-eslint/no-floating-promises": "off",
-       "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/no-require-imports": "off", // Allow require in JS
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unnecessary-condition": "off",
     },
     settings: { react: { version: "detect" } },
   },
-];
+])
 
-export default nextJsConfig;
+
+export default nextJsConfig

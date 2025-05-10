@@ -1,12 +1,12 @@
 export default {
   meta: {
-    type: 'suggestion',
-    fixable: 'code',
+    type: "suggestion",
+    fixable: "code",
     docs: {
-      description: 'Enforce usage of `cn()` over template strings in className',
+      description: "Enforce usage of `cn()` over template strings in className",
     },
     messages: {
-      useCn: 'Prefira utilizar o utilitário `cn()` em vez de template strings em className',
+      useCn: "Prefira utilizar o utilitário `cn()` em vez de template strings em className",
     },
     schema: [],
   },
@@ -16,10 +16,10 @@ export default {
     return {
       JSXAttribute(node) {
         if (
-          node.name.name !== 'className' ||
+          node.name.name !== "className" ||
           !node.value ||
-          node.value.type !== 'JSXExpressionContainer' ||
-          node.value.expression.type !== 'TemplateLiteral'
+          node.value.type !== "JSXExpressionContainer" ||
+          node.value.expression.type !== "TemplateLiteral"
         ) {
           return
         }
@@ -42,18 +42,18 @@ export default {
 
         context.report({
           node: node.value,
-          messageId: 'useCn',
+          messageId: "useCn",
           fix(fixer) {
-            const allArgs = [...staticStrings, ...dynamicExprs].join(', ')
+            const allArgs = [...staticStrings, ...dynamicExprs].join(", ")
             const replacement = `cn(${allArgs})`
             const fixes = [fixer.replaceText(node.value, `{${replacement}}`)]
 
             const hasCnImport = sourceCode.ast.body.some(
               (n) =>
-                n.type === 'ImportDeclaration' &&
-                n.source.value === '@tessel/utils' &&
+                n.type === "ImportDeclaration" &&
+                n.source.value === "@tessel/utils" &&
                 n.specifiers.some(
-                  (s) => s.type === 'ImportSpecifier' && s.imported.name === 'cn'
+                  (s) => s.type === "ImportSpecifier" && s.imported.name === "cn"
                 )
             )
 
@@ -61,15 +61,15 @@ export default {
               fixes.push(
                 fixer.insertTextBeforeRange(
                   [0, 0],
-                  `import { cn } from "@tessel/utils"\n`
+                  "import { cn } from \"@tessel/utils\"\n"
                 )
               )
             }
 
             return fixes
-          }
+          },
         })
-      }
+      },
     }
-  }
+  },
 }

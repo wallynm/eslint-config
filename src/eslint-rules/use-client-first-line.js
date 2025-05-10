@@ -1,7 +1,7 @@
 export default {
   meta: {
-    type: 'problem',
-    fixable: 'code',
+    type: "problem",
+    fixable: "code",
     docs: {
       description: 'Garante que "use client" esteja na primeira linha do arquivo.',
     },
@@ -14,41 +14,37 @@ export default {
   create(context) {
     return {
       Program(node) {
-        const sourceCode = context.getSourceCode();
-        const statements = node.body;
+        const sourceCode = context.getSourceCode()
+        const statements = node.body
 
-        // Procura "use client"
         const directiveNode = statements.find(
           (stmt) =>
-            stmt.type === 'ExpressionStatement' &&
-            stmt.expression.type === 'Literal' &&
-            stmt.expression.value === 'use client'
-        );
+            stmt.type === "ExpressionStatement" &&
+            stmt.expression.type === "Literal" &&
+            stmt.expression.value === "use client"
+        )
 
-        if (!directiveNode) return;
+        if (!directiveNode) return
 
-        // Encontra a posição correta: antes de qualquer import ou declaração
-        const firstNonCommentToken = sourceCode.getFirstToken(node, { includeComments: false });
-        const firstStatement = statements[0];
+        const firstNonCommentToken = sourceCode.getFirstToken(node, { includeComments: false })
+        const firstStatement = statements[0]
 
         if (directiveNode !== firstStatement) {
           context.report({
             node: directiveNode,
-            messageId: 'mustBeFirst',
+            messageId: "mustBeFirst",
             fix(fixer) {
-              const directiveText = sourceCode.getText(directiveNode);
+              const directiveText = sourceCode.getText(directiveNode)
 
-              // Remove "use client" da posição atual
-              const fixes = [fixer.remove(directiveNode)];
+              const fixes = [fixer.remove(directiveNode)]
 
-              // Inserir no topo do programa (antes do primeiro statement)
-              fixes.push(fixer.insertTextBefore(firstStatement, `${directiveText}\n\n`));
+              fixes.push(fixer.insertTextBefore(firstStatement, `${directiveText}\n\n`))
 
-              return fixes;
+              return fixes
             },
-          });
+          })
         }
       },
-    };
+    }
   },
-};
+}
