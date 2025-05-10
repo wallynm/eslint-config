@@ -8,7 +8,7 @@
   },
   "exports": {
     "./base": "./base.js",
-    "./next-js": "./next.js",
+    "./next": "./next.js",
     "./react": "./react.js"
   },
   "keywords": [],
