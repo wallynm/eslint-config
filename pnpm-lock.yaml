@@ -8,10 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@stylistic/eslint-plugin-js':
-        specifier: ^4.2.0
-        version: 4.2.0(eslint@9.26.0)
-    devDependencies:
       '@eslint/js':
         specifier: ^9.26.0
         version: 9.26.0
@@ -21,21 +17,18 @@ importers:
       '@stylistic/eslint-plugin':
         specifier: ^4.2.0
         version: 4.2.0(eslint@9.26.0)(typescript@5.8.3)
+      '@stylistic/eslint-plugin-js':
+        specifier: ^4.2.0
+        version: 4.2.0(eslint@9.26.0)
       '@stylistic/eslint-plugin-jsx':
         specifier: ^4.2.0
         version: 4.2.0(eslint@9.26.0)
-      eslint:
-        specifier: ^9.21.0
-        version: 9.26.0
       eslint-config-prettier:
         specifier: ^10.1.5
         version: 10.1.5(eslint@9.26.0)
       eslint-plugin-newline-destructuring:
         specifier: ^1
         version: 1.2.2(eslint@9.26.0)
-      eslint-plugin-only-warn:
-        specifier: ^1
-        version: 1.1.0
       eslint-plugin-perfectionist:
         specifier: ^4.12.3
         version: 4.12.3(eslint@9.26.0)(typescript@5.8.3)
@@ -57,6 +50,13 @@ importers:
       typescript-eslint:
         specifier: ^8
         version: 8.32.0(eslint@9.26.0)(typescript@5.8.3)
+    devDependencies:
+      eslint:
+        specifier: ^9.21.0
+        version: 9.26.0
+      eslint-plugin-only-warn:
+        specifier: ^1
+        version: 1.1.0
 
 packages:
 

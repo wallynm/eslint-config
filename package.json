@@ -1,6 +1,6 @@
 {
   "name": "eslint-config",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -17,14 +17,17 @@
   "license": "ISC",
   "packageManager": "pnpm@10.7.0",
   "devDependencies": {
+    "eslint": "^9.21.0",
+    "eslint-plugin-only-warn": "^1"
+  },
+  "dependencies": {
     "@eslint/js": "^9.26.0",
     "@next/eslint-plugin-next": "^15.1.6",
     "@stylistic/eslint-plugin": "^4.2.0",
+    "@stylistic/eslint-plugin-js": "^4.2.0",
     "@stylistic/eslint-plugin-jsx": "^4.2.0",
-    "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-newline-destructuring": "^1",
-    "eslint-plugin-only-warn": "^1",
     "eslint-plugin-perfectionist": "^4.12.3",
     "eslint-plugin-react": "^7",
     "eslint-plugin-react-hooks": "^5",
@@ -32,8 +35,5 @@
     "globals": "^15",
     "typescript": "^5",
     "typescript-eslint": "^8"
-  },
-  "dependencies": {
-    "@stylistic/eslint-plugin-js": "^4.2.0"
   }
 }
