@@ -8,6 +8,7 @@
     "lint": "eslint ."
   },
   "exports": {
+    "./test": "./src/test.js",
     "./base": "./src/base.js",
     "./next": "./src/next.js",
     "./react": "./src/react.js"
